@@ -1,13 +1,31 @@
 <form action="https://derekdappdonate.herokuapp.com/" method="POST">
-    <script
-        src="https://checkout.stripe.com/checkout.js"
-        class="stripe-button"
-        data-key="pk_test_nBtz17IH83nYGWuPUJJyptlN"
-        data-name="YOUR_NAME"
-        data-description="YOUR_DESCRIPTION"
-        data-amount="1000"
-    ></script>
-    <input name="amount" value="1000" type="hidden">
-    <input name="description" value="YOUR_DESCRIPTION" type="hidden">
-    <input name="metadata" value="YOUR_METADATA" type="hidden">
+    <script src="https://checkout.stripe.com/checkout.js"></script>
+
+<button id="customButton">Purchase</button>
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: 'pk_test_nBtz17IH83nYGWuPUJJyptlN',
+    image: '/img/documentation/checkout/marketplace.png',
+    token: function(token) {
+      // Use the token to create the charge with a server-side script.
+      // You can access the token ID with `token.id`
+    }
+  });
+
+  $('#customButton').on('click', function(e) {
+    // Open Checkout with further options
+    handler.open({
+      name: 'Demo Site',
+      description: '2 widgets',
+      amount: 2000
+    });
+    e.preventDefault();
+  });
+
+  // Close Checkout on page navigation
+  $(window).on('popstate', function() {
+    handler.close();
+  });
+</script>
 </form>
