@@ -1,9 +1,7 @@
+
+<script src="https://checkout.stripe.com/checkout.js"></script><button id="customButton">Purchase</button>
 <form action="https://derekdappdonate.herokuapp.com/" method="POST">
-    <script src="https://checkout.stripe.com/checkout.js"></script>
-
-<button id="customButton">Purchase</button>
-
-<script>
+    <script>
   var handler = StripeCheckout.configure({
     key: 'pk_test_nBtz17IH83nYGWuPUJJyptlN',
     image: '/img/documentation/checkout/marketplace.png',
@@ -18,7 +16,7 @@
     handler.open({
       name: 'Demo Site',
       description: '2 widgets',
-      amount: 2000
+      amount: 1000
     });
     e.preventDefault();
   });
@@ -28,4 +26,7 @@
     handler.close();
   });
 </script>
+    <input name="amount" value="1000" type="hidden">
+    <input name="description" value="YOUR_DESCRIPTION" type="hidden">
+    <input name="metadata" value="YOUR_METADATA" type="hidden">
 </form>
